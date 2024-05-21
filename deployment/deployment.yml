@@ -16,6 +16,7 @@ spec:
       containers:
         - name: mongo
           image: mongo:latest
+          restartPolicy: Always
           ports:
             - name: mongo
               containerPort: 27012
