@@ -19,7 +19,7 @@ spec:
           restartPolicy: Always
           ports:
             - name: mongo
-              containerPort: 27012
+              containerPort: 27017
               protocol: TCP
       containers:
         - name: tenant-manager
