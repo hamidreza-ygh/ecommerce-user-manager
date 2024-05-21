@@ -13,7 +13,7 @@ spec:
         app: tenant-manager
         role: tenant-management
     spec:
-      containers:
+      initContainers:
         - name: mongo
           image: mongo:latest
           restartPolicy: Always
@@ -21,6 +21,7 @@ spec:
             - name: mongo
               containerPort: 27012
               protocol: TCP
+      containers:
         - name: tenant-manager
           image: ghcr.io/hamidreza-ygh/tenant-manager:latest
           env:
