@@ -65,6 +65,7 @@ class AuthController {
   }
 
   async verify(req, res) {
+    console.log("CORS", req)
     if (req.headers['Sec-Fetch-Mode'] === 'cors') {
       res.status(200).json({ message: 'Allow Preflight' });
     } else {
