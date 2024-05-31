@@ -66,6 +66,7 @@ class AuthController {
 
   async verify(req, res) {
     if (!req.headers['authorization']) {
+      console.log("CORS", req.headers)
       res.status(200).json({ message: req.headers });
     } else {
       const token = req.headers['authorization'];
