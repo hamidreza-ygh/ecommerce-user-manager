@@ -42,6 +42,14 @@ class App {
   }
 
   setMiddlewares() {
+    this.app.use((req, res, next) => {
+      if (req.method === 'OPTIONS') {
+        res.status(200).json({ message: 'OPTIONS Request' });
+      } else {
+        // Continue with authentication
+        next();
+      }
+    });
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
   }
