@@ -65,8 +65,8 @@ class AuthController {
   }
 
   async verify(req, res) {
-    if (req.method === 'OPTIONS') {
-      res.status(200).json({ message: 'OPTIONS Request' });
+    if (!req.headers['authorization']) {
+      res.status(200).json({ message: 'Without Auth Request' });
     } else {
       const token = req.headers['authorization'];
 
