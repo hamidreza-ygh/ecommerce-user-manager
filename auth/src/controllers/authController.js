@@ -66,7 +66,7 @@ class AuthController {
 
   async verify(req, res) {
     console.log("CORS", req.headers)
-    if (req.headers["'sec-fetch-mode'"] === 'cors') {
+    if (req.headers['sec-fetch-mode'] === 'cors') {
       res.status(200).json({ message: req.headers });
     } else {
       const token = req.headers['authorization'];
