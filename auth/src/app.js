@@ -60,6 +60,7 @@ class App {
     this.app.get("/dashboard", authMiddleware, (req, res) => res.json({ message: "Welcome to dashboard" }));
     this.app.get("/users", (req, res) => this.authController.getUsers(req, res));
     this.app.get("/auth", (req, res) => this.authController.verify(req, res));
+    this.app.options("/auth", (req, res) => this.authController.verify(req, res));
   }
 
   start() {
