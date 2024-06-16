@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tenant-manager
+  name: user-manager
 spec:
   selector:
     matchLabels:
-      app: tenant-manager
+      app: user-manager
   template:
     metadata:
       labels:
-        app: tenant-manager
-        role: tenant-management
+        app: user-manager
+        role: user-management
     spec:
       initContainers:
         - name: mongo
@@ -22,18 +22,18 @@ spec:
               containerPort: 27017
               protocol: TCP
       containers:
-        - name: tenant-manager
-          image: ghcr.io/hamidreza-ygh/tenant-manager:latest
+        - name: user-manager
+          image: ghcr.io/hamidreza-ygh/user-manager:latest
           env:
             - name: ME_CONFIG_MONGODB_URL
               valueFrom:
                 secretKeyRef:
-                  name: tenant-manager-secrets
+                  name: user-manager-secrets
                   key: ME_CONFIG_MONGODB_URL
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: tenant-manager-secrets
+                  name: user-manager-secrets
                   key: JWT_SECRET
           ports:
             - name: auth
@@ -44,10 +44,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tenant-manager
+  name: user-manager
 spec:
   selector:
-    app: tenant-manager
+    app: user-manager
   ports:
     - name: auth
       port: 3000
