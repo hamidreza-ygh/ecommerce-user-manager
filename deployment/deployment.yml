@@ -23,7 +23,7 @@ spec:
               protocol: TCP
       containers:
         - name: user-manager
-          image: ghcr.io/hamidreza-ygh/user-manager:latest
+          image: ghcr.io/hamidreza-ygh/ecommerce-user-manager:latest
           env:
             - name: ME_CONFIG_MONGODB_URL
               valueFrom:
