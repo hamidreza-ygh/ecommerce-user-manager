@@ -53,3 +53,21 @@ spec:
       port: 3000
       protocol: TCP
   type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-user-manager
+spec:
+  rules:
+    - host: api.tenantodo.life
+      http:
+        paths:
+          - path: /authentication
+            pathType: Prefix
+            backend:
+              service:
+                name: user-manager
+                port:
+                  number: 3000
