@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("./config");
-const authMiddleware = require("./middlewares/authMiddleware");
+const authRouter = require("./routes/authRoutes");
 const AuthController = require("./controllers/authController");
 
 class App {
@@ -61,12 +61,14 @@ class App {
   }
 
   setRoutes() {
-    this.app.post("/login", (req, res) => this.authController.login(req, res));
-    this.app.post("/register", (req, res) => this.authController.register(req, res));
-    this.app.get("/dashboard", authMiddleware, (req, res) => res.json({ message: "Welcome to dashboard" }));
-    this.app.get("/users", (req, res) => this.authController.getUsers(req, res));
-    this.app.get("/auth", (req, res) => this.authController.verify(req, res));
-    this.app.options("/auth", (req, res) => this.authController.verify(req, res));
+    // this.app.post("/login", (req, res) => this.authController.login(req, res));
+    // this.app.post("/register", (req, res) => this.authController.register(req, res));
+    // this.app.get("/dashboard", authMiddleware, (req, res) => res.json({ message: "Welcome to dashboard" }));
+    // this.app.get("/users", (req, res) => this.authController.getUsers(req, res));
+    // this.app.get("/auth", (req, res) => this.authController.verify(req, res));
+    // this.app.options("/auth", (req, res) => this.authController.verify(req, res));
+
+    this.app.use("/authentication", authRouter);
   }
 
   start() {
